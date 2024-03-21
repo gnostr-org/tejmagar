@@ -14,24 +14,10 @@ pub fn start() -> String {
         .filter(|&(ref k, _)| k == "TERM" || k == "TZ" || k == "LANG" || k == "PATH")
         .collect();
 
-    //Command::new("printenv")
-    //    .stdin(Stdio::null())
-    //    .stdout(Stdio::inherit())
-    //    .env_clear()
-    //    .envs(&filtered_env)
-    //    .spawn()
-    //    .expect("printenv failed to start");
-
-    //let ls_id = Command::new("ls")
-    //    .current_dir("/usr/local/bin")
-    //    .spawn()
-    //    .expect("ls command failed to start");
-    //println!("{:?}",ls_id.id());
-
     let start_front = if cfg!(target_os = "windows") {
         Command::new("tejmagar-index")
             .args(["/C", ""])
-            .current_dir("/usr/local/bin") //TODO
+            //.current_dir("/usr/local/bin") //TODO
             .stdout(Stdio::inherit())
             .env_clear()
             .envs(&filtered_env)
