@@ -22,9 +22,16 @@ pub fn start() -> String {
     //    .spawn()
     //    .expect("printenv failed to start");
 
+    //let ls_id = Command::new("ls")
+    //    .current_dir("/usr/local/bin")
+    //    .spawn()
+    //    .expect("ls command failed to start");
+    //println!("{:?}",ls_id.id());
+
     let start_front = if cfg!(target_os = "windows") {
         Command::new("tejmagar-index")
             .args(["/C", ""])
+            .current_dir("/usr/local/bin")
             .stdout(Stdio::inherit())
             .env_clear()
             .envs(&filtered_env)
@@ -33,6 +40,7 @@ pub fn start() -> String {
     } else if cfg!(target_os = "macos") {
         Command::new("tejmagar-index")
             .arg("")
+            .current_dir("/usr/local/bin")
             .stdout(Stdio::inherit())
             .env_clear()
             .envs(&filtered_env)
@@ -41,6 +49,7 @@ pub fn start() -> String {
     } else if cfg!(target_os = "linux") {
         Command::new("tejmagar-index")
             .arg("")
+            .current_dir("/usr/local/bin")
             .stdout(Stdio::inherit())
             .env_clear()
             .envs(&filtered_env)
@@ -49,6 +58,7 @@ pub fn start() -> String {
     } else {
         Command::new("tejmagar-index")
             .arg("")
+            .current_dir("/usr/local/bin")
             .stdout(Stdio::inherit())
             .env_clear()
             .envs(&filtered_env)
